@@ -22,7 +22,7 @@ export default function Nav() {
         <li><a href="#security-tools">Tools</a></li>
         <li><a href="#writeups">Writeups</a></li>
       </ul>
-      <a href="#contact" className="nav-cta">Let&apos;s Talk →</a>
+      <a href="#contact" className="nav-cta">Hire Me →</a>
     </nav>
   );
 }
