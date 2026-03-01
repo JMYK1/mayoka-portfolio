@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Space_Mono, Syne, DM_Sans } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 
 const spaceMono = Space_Mono({
@@ -28,11 +29,11 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://mayoka.dev'),
   title: {
-    default: 'John Mayoka | Security Engineer & Full-Stack Web Developer NYC',
+    default: 'John Mayoka | Security Engineer & Web Developer NYC',
     template: '%s | John Mayoka',
   },
   description:
-    'John Mayoka is a self-taught full-stack web developer and cybersecurity engineer based in New York City. Specializing in Next.js, React, TypeScript, and security-first development. Available for freelance and full-time roles.',
+    'John Mayoka — self-taught full-stack web developer and security engineer in NYC. Next.js, React, TypeScript, security-first development. Available for freelance and full-time roles.',
   keywords: [
     'John Mayoka',
     'security engineer NYC',
@@ -92,6 +93,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
       { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
@@ -230,7 +232,25 @@ export default function RootLayout({
           />
         ))}
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
+      </body>
     </html>
   );
 }
