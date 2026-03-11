@@ -1,14 +1,15 @@
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-    return {
-        rules: [
-            {
-                userAgent: '*',
-                allow: '/',
-            },
-        ],
-        sitemap: 'https://mayoka.dev/sitemap.xml',
-        host: 'https://mayoka.dev',
-    };
+  return {
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/_next/', '/api/'],
+      },
+    ],
+    sitemap: 'https://www.mayoka.dev/sitemap.xml',
+    host: 'https://www.mayoka.dev',
+  };
 }
