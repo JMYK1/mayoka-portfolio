@@ -27,7 +27,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mayoka.dev'),
+  metadataBase: new URL('https://www.mayoka.dev'),
   title: {
     default: 'John Mayoka | Security Engineer & Web Developer NYC',
     template: '%s | John Mayoka',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     'TypeScript developer',
     'mayoka.dev',
   ],
-  authors: [{ name: 'John Mayoka', url: 'https://mayoka.dev' }],
+  authors: [{ name: 'John Mayoka', url: 'https://www.mayoka.dev' }],
   creator: 'John Mayoka',
   publisher: 'John Mayoka',
   robots: {
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://mayoka.dev',
+    url: 'https://www.mayoka.dev',
     siteName: 'John Mayoka',
     title: 'John Mayoka | Security Engineer & Full-Stack Web Developer NYC',
     description:
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
     images: ['/images/og-image.png'],
   },
   alternates: {
-    canonical: 'https://mayoka.dev',
+    canonical: 'https://www.mayoka.dev',
   },
   icons: {
     icon: [
@@ -116,9 +116,9 @@ const jsonLdSchemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    '@id': 'https://mayoka.dev/#person',
+    '@id': 'https://www.mayoka.dev/#person',
     name: 'John Mayoka',
-    url: 'https://mayoka.dev',
+    url: 'https://www.mayoka.dev',
     email: 'john@mayoka.dev',
     jobTitle: 'Full-Stack Web Developer & Security Engineer',
     description:
@@ -150,60 +150,60 @@ const jsonLdSchemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': 'https://mayoka.dev/#website',
-    url: 'https://mayoka.dev',
+    '@id': 'https://www.mayoka.dev/#website',
+    url: 'https://www.mayoka.dev',
     name: 'John Mayoka | Security Engineer & Full-Stack Developer',
     description:
       'Personal portfolio of John Mayoka — full-stack web developer and cybersecurity engineer based in New York City.',
-    publisher: { '@id': 'https://mayoka.dev/#person' },
+    publisher: { '@id': 'https://www.mayoka.dev/#person' },
     inLanguage: 'en-US',
   },
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    '@id': 'https://mayoka.dev/#breadcrumb',
+    '@id': 'https://www.mayoka.dev/#breadcrumb',
     itemListElement: [
       {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://mayoka.dev',
+        item: 'https://www.mayoka.dev',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'About',
-        item: 'https://mayoka.dev/#about',
+        item: 'https://www.mayoka.dev/#about',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Projects',
-        item: 'https://mayoka.dev/#projects',
+        item: 'https://www.mayoka.dev/#projects',
       },
       {
         '@type': 'ListItem',
         position: 4,
         name: 'Skills',
-        item: 'https://mayoka.dev/#skills',
+        item: 'https://www.mayoka.dev/#skills',
       },
       {
         '@type': 'ListItem',
         position: 5,
         name: 'Security Tools',
-        item: 'https://mayoka.dev/#security-tools',
+        item: 'https://www.mayoka.dev/#security-tools',
       },
       {
         '@type': 'ListItem',
         position: 6,
         name: 'Writeups',
-        item: 'https://mayoka.dev/#writeups',
+        item: 'https://www.mayoka.dev/#writeups',
       },
       {
         '@type': 'ListItem',
         position: 7,
         name: 'Contact',
-        item: 'https://mayoka.dev/#contact',
+        item: 'https://www.mayoka.dev/#contact',
       },
     ],
   },

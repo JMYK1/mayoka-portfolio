@@ -1,16 +1,21 @@
+import Link from 'next/link';
 import Nav from './components/Nav';
 import Cursor from './components/Cursor';
 import Terminal from './components/Terminal';
 import Stats from './components/Stats';
 import SecurityTools from './components/SecurityTools';
 import ContactForm from './components/ContactForm';
+import EmailLink from './components/EmailLink';
 import Reveal from './components/Reveal';
+import GitHubRepoCard from './components/GitHubRepoCard';
 
 /* ────────── DATA ────────── */
 const PROJECTS = [
   {
     featured: true,
-    icon: '🌐',
+    owner: 'JMYK1',
+    repo: 'portfolio',
+    accentColor: '#00ff88',
     type: 'Portfolio · Security',
     name: 'Portfolio Website',
     desc: 'My personal security engineer portfolio. 3D visuals, security tool demos, and zero bloat. Deep dive into 3D web graphics and performance optimization.',
@@ -19,7 +24,9 @@ const PROJECTS = [
     demo: 'https://mayoka.dev',
   },
   {
-    icon: '📊',
+    owner: 'JMYK1',
+    repo: 'log-analyzer-dashboard',
+    accentColor: '#00d4ff',
     type: 'Security · Dashboard',
     name: 'Log Analyzer Dashboard',
     desc: 'Parse, visualize, and flag anomalies in server logs in real time. Pattern recognition in log data and data visualization at scale.',
@@ -27,7 +34,9 @@ const PROJECTS = [
     github: 'https://github.com/JMYK1/log-analyzer-dashboard',
   },
   {
-    icon: '🔐',
+    owner: 'JMYK1',
+    repo: 'password',
+    accentColor: '#ffd600',
     type: 'Security · Client-Side',
     name: 'Password Hygiene Checker',
     desc: 'Analyze password strength offline. Nothing leaves your browser. Built with the Web Crypto API for fully private, client-side analysis.',
@@ -35,7 +44,9 @@ const PROJECTS = [
     github: 'https://github.com/JMYK1/password',
   },
   {
-    icon: '🔗',
+    owner: 'JMYK1',
+    repo: 'URL-perser-Phishing-Risk',
+    accentColor: '#ff3c5a',
     type: 'Security · Detection',
     name: 'URL Parser & Phishing Detector',
     desc: 'Spot phishing URLs by dissecting patterns completely offline. Analyzes URL anatomy and detects common social engineering techniques.',
@@ -43,7 +54,9 @@ const PROJECTS = [
     github: 'https://github.com/JMYK1/URL-perser-Phishing-Risk',
   },
   {
-    icon: '✅',
+    owner: 'JMYK1',
+    repo: 'Task-Manager-App',
+    accentColor: '#a855f7',
     type: 'Full-Stack · SaaS',
     name: 'Task Manager App',
     desc: 'Full-stack task app with real-time sync and team collaboration. Deep dive into real-time communication patterns and database optimization.',
@@ -51,7 +64,9 @@ const PROJECTS = [
     github: 'https://github.com/JMYK1/Task-Manager-App',
   },
   {
-    icon: '🚩',
+    owner: 'JMYK1',
+    repo: 'CTF-Writeup-Collection-',
+    accentColor: '#ff8800',
     type: 'Security · Education',
     name: 'CTF Writeups Collection',
     desc: 'Solved CTF challenges, explained step-by-step for learners. Problem-solving under pressure and security research methodology.',
@@ -69,12 +84,12 @@ const SKILLS = [
 ];
 
 const WRITEUPS = [
-  { date: 'Dec 15\n2024', title: 'XSS Basics: Understanding Cross-Site Scripting', desc: 'A beginner-friendly deep dive into XSS vulnerabilities, how they work, and how to prevent them.', tags: ['Security', 'Web', 'XSS'], mins: 6 },
-  { date: 'Nov 20\n2024', title: 'Building Secure APIs: A Practical Guide', desc: 'Best practices for API security including authentication, rate limiting, and input validation.', tags: ['Security', 'API', 'Backend'], mins: 8 },
-  { date: 'Oct 28\n2024', title: "CTF Writeup: Web Challenge 'Hidden Admin'", desc: 'Walkthrough of a web CTF challenge involving forced browsing and privilege escalation.', tags: ['CTF', 'Writeup', 'Web'], mins: 5 },
-  { date: 'Sep 15\n2024', title: 'React Performance: Beyond the Basics', desc: 'Advanced techniques for optimizing React apps, from memo to virtualization.', tags: ['React', 'Performance', 'Frontend'], mins: 7 },
-  { date: 'Aug 10\n2024', title: 'Introduction to Threat Modeling for Developers', desc: 'How to think about security during the design phase of your applications.', tags: ['Security', 'Architecture', 'Design'], mins: 6 },
-  { date: 'Jul 5\n2024', title: 'Docker Security Basics for Web Developers', desc: 'Essential security practices when containerizing your web applications.', tags: ['Docker', 'DevOps', 'Security'], mins: 5 },
+  { slug: 'xss-basics', date: 'Dec 15\n2024', title: 'XSS Basics: Understanding Cross-Site Scripting', desc: 'A beginner-friendly deep dive into XSS vulnerabilities, how they work, and how to prevent them.', tags: ['Security', 'Web', 'XSS'], mins: 6 },
+  { slug: 'secure-apis', date: 'Nov 20\n2024', title: 'Building Secure APIs: A Practical Guide', desc: 'Best practices for API security including authentication, rate limiting, and input validation.', tags: ['Security', 'API', 'Backend'], mins: 8 },
+  { slug: 'ctf-hidden-admin', date: 'Oct 28\n2024', title: "CTF Writeup: Web Challenge 'Hidden Admin'", desc: 'Walkthrough of a web CTF challenge involving forced browsing and privilege escalation.', tags: ['CTF', 'Writeup', 'Web'], mins: 5 },
+  { slug: 'react-performance', date: 'Sep 15\n2024', title: 'React Performance: Beyond the Basics', desc: 'Advanced techniques for optimizing React apps, from memo to virtualization.', tags: ['React', 'Performance', 'Frontend'], mins: 7 },
+  { slug: 'threat-modeling', date: 'Aug 10\n2024', title: 'Introduction to Threat Modeling for Developers', desc: 'How to think about security during the design phase of your applications.', tags: ['Security', 'Architecture', 'Design'], mins: 6 },
+  { slug: 'docker-security', date: 'Jul 5\n2024', title: 'Docker Security Basics for Web Developers', desc: 'Essential security practices when containerizing your web applications.', tags: ['Docker', 'DevOps', 'Security'], mins: 5 },
 ];
 
 /* ────────── ICONS ────────── */
@@ -202,9 +217,7 @@ export default function HomePage() {
               <Reveal key={p.name} delay={i * 60}>
                 <div className={`project-card${p.featured ? ' featured' : ''}`}>
                   {p.featured && <span className="project-featured-badge">Featured</span>}
-                  <div className="project-img-placeholder">
-                    <div className="project-icon">{p.icon}</div>
-                  </div>
+                  <GitHubRepoCard owner={p.owner} repo={p.repo} accentColor={p.accentColor} />
                   <div className="project-body">
                     <div className="project-type">{p.type}</div>
                     <h3 className="project-name">{p.name}</h3>
@@ -276,17 +289,19 @@ export default function HomePage() {
           <div className="writeups-list">
             {WRITEUPS.map((w, i) => (
               <Reveal key={w.title} delay={i * 50}>
-                <div className="writeup-item">
-                  <div className="writeup-date" style={{ whiteSpace: 'pre' }}>{w.date}</div>
-                  <div className="writeup-content">
-                    <div className="writeup-title">{w.title}</div>
-                    <div className="writeup-desc">{w.desc}</div>
-                    <div className="writeup-tags">
-                      {w.tags.map(t => <span key={t} className="writeup-tag">{t}</span>)}
+                <Link href={`/writeups/${w.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div className="writeup-item">
+                    <div className="writeup-date" style={{ whiteSpace: 'pre' }}>{w.date}</div>
+                    <div className="writeup-content">
+                      <div className="writeup-title">{w.title}</div>
+                      <div className="writeup-desc">{w.desc}</div>
+                      <div className="writeup-tags">
+                        {w.tags.map(t => <span key={t} className="writeup-tag">{t}</span>)}
+                      </div>
                     </div>
+                    <div className="writeup-read">{w.mins} min → Read</div>
                   </div>
-                  <div className="writeup-read">{w.mins} min → Read</div>
-                </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -309,7 +324,7 @@ export default function HomePage() {
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
-                  <a href="mailto:john@mayoka.dev">john@mayoka.dev</a>
+                  <EmailLink />
                 </div>
                 <div className="contact-location">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

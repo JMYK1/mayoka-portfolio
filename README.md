@@ -63,7 +63,7 @@ mayoka-portfolio/
 ## 📝 Customization
 
 1. **Add your Google Search Console token** in `app/layout.tsx` → `verification.google`
-2. **Add your resume PDF** to `public/resume.pdf`
+2. **Add your resume PDF** to `public/resume.pdf` — Replace `public/resume.pdf` with your real resume PDF.
 3. **Add project screenshots** to `public/images/projects/`
 4. **Update stats** in `app/components/Stats.tsx`
 5. **Update writeup links** in `app/page.tsx` → `WRITEUPS` array

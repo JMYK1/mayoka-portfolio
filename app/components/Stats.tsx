@@ -2,10 +2,17 @@
 import { useEffect, useRef, useState } from 'react';
 
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
+  const [mounted, setMounted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setMounted(true);
+    setCount(0);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
@@ -24,7 +31,7 @@ function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, [target]);
+  }, [mounted, target]);
 
   return (
     <div ref={ref} className="stat-num">
